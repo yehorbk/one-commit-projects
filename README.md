@@ -11,3 +11,6 @@ Visualization of JavaScript's Math.rand() function
 
 ### snake-js
 The Snake video-game
+
+### pong-js
+The Pong video-game
