@@ -8,3 +8,6 @@ The simple implementation of perceptron neural net
 
 ### random-function-visualizer
 Visualization of JavaScript's Math.rand() function
+
+### snake-js
+The Snake video-game
