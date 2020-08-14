@@ -13,4 +13,7 @@ Visualization of JavaScript's Math.rand() function
 The Snake video-game
 
 ### pong-js
-The Pong video-game
+The Pong video-game (single-player)
+
+### breakout-js
+The Breakout video-game
