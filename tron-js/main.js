@@ -67,15 +67,15 @@ const gameOver = () => {
 
 const generateBarrierUnit = player => {
 	if (player.barrier) {
-		const posX = player.posX + player.width / 2 - 2;
-		const posY = player.posY + player.height / 2 - 2;
-  	const barrierUnit = {
-			posX,
-			posY,
+		const barrierUnit = {
+			posX: -1,
+			posY: -1,
 			width: 4,
 			height: 4,
 			color: player.color,
 		};
+		barrierUnit.posX = player.posX + player.width / 2 - barrierUnit.width / 2;
+		barrierUnit.posY = player.posY + player.height / 2 - barrierUnit.height / 2;
 		barrierList.push(barrierUnit);
 	}
 };
@@ -92,25 +92,42 @@ const collisionRecognizer = player => {
 	const borderCollisionY = (player.posY <= 0 ||
 		(player.posY + player.height) >= canvas.height);
 	const barrierCollision = (() => {
-  	for (const barrierUnit of barrierList) {
-			const innerBarrierCollisionX = (player.posX === barrierUnit.posX) &&
-				((player.posX + player.width) === (barrierUnit.posX + barrierUnit.width));
-			const innerBarrierCollisionY = (player.posY === barrierUnit.posY) &&
-				((player.posY + player.height) === (barrierUnit.posY + barrierUnit.height));
-			if (innerBarrierCollisionX && innerBarrierCollisionY) {
-				return false;
-			}
-		  const barrierCollisionX = (player.posX >= barrierUnit.posX &&
-        player.posX <= (barrierUnit.posX + barrierUnit.width));
-      const barrierCollisionY = (player.posY <=
-        (barrierUnit.posY + barrierUnit.height)) &&
-        (player.posY + player.height) >= barrierUnit.posY;
-      if (barrierCollisionX && barrierCollisionY) {
+		for (let i = 0; i < barrierList.length - 19; i++) {
+			const barrierUnit = barrierList[i];
+  	//for (const barrierUnit of barrierList) {
+			/*const innerBarrierCollisionX = (barrierUnit.posX >= player.posX) &&
+				barrierUnit.posX <= (player.posX + player.width);
+			const innerBarrierCollisionY = (barrierUnit.posY >= player.posY) &&
+				barrierUnit.posY <= (player.posY + player.height);
+			if (innerBarrierCollisionX || innerBarrierCollisionY) {
+				continue;
+			}*/
+		  /*const barrierCollisionX = ((player.posX + player.width / 2) >= barrierUnit.posX &&
+        (player.posX + player.width / 2) <= (barrierUnit.posX + barrierUnit.width));
+      const barrierCollisionY = ((player.posY + player.height / 2) >= barrierUnit.posY &&
+				(player.posY + player.height / 2) <= (barrierUnit.posY + barrierUnit.height));
+		  if (barrierCollisionX && barrierCollisionY) {
 				console.log(player);
 				console.log(barrierUnit);
-				//alert();
-        return false; // true
-      }
+				alert();
+        return true; // true
+      }*/
+			/*const innerBarrierCollisionX =
+			const innerBarrierCollisionY =
+			if ((innerBarrierCollisionX || innerBarrierCollisionY) &&
+				player.destination === destinationState.) {
+				continue;
+			}*/
+			const barrierCollisionX = (player.posX > barrierUnit.posX &&
+				player.posX < (barrierUnit.posX + barrierUnit.width));
+			const barrierCollisionY = (player.posY > barrierUnit.posY &&
+				player.posY < (barrierUnit.posY + barrierUnit.height));
+			if (barrierCollisionX && barrierCollisionY) {
+				console.log(player);
+				console.log(barrierUnit);
+				alert();
+        return true;
+			};
 		}
 		return false;
 	})();
