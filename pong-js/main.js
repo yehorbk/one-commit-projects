@@ -1,3 +1,5 @@
+'use strict';
+
 const canvas = document.getElementById('canvas');
 const playerScore = document.getElementById('player-score');
 const enemyScore = document.getElementById('enemy-score');

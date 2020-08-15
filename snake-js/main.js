@@ -1,3 +1,5 @@
+'use strict';
+
 const canvas = document.getElementById('canvas');
 const score = document.getElementById('score');
 const context = canvas.getContext('2d');

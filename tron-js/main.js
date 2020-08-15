@@ -1,17 +1,17 @@
-'use strict'
+'use strict';
 
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 
 const directionState = {
-  LEFT: '00',
-  UP: '01',
-  RIGHT: '10',
-  DOWN: '11',
+	LEFT: '00',
+	UP: '01',
+	RIGHT: '10',
+	DOWN: '11',
 };
 
 const bluePlayer = {
-  color: '#98d4da',
+	color: '#98d4da',
 	width: 8,
 	height: 8,
 	posX: -1,
@@ -22,7 +22,7 @@ const bluePlayer = {
 };
 
 const orangePlayer = {
-  color: '#efe059',
+	color: '#efe059',
 	width: 8,
 	height: 8,
 	posX: -1,
@@ -35,7 +35,7 @@ const orangePlayer = {
 const barrierList = [];
 
 const clearField = () => {
-  context.clearRect(0, 0, canvas.width, canvas.height);
+	context.clearRect(0, 0, canvas.width, canvas.height);
 };
 
 const prepareBluePlayer = () => {
@@ -47,9 +47,9 @@ const prepareBluePlayer = () => {
 };
 
 const prepareOrangePlayer = () => {
-	orangePlayer.direction = directionState.DOWN;
 	orangePlayer.posX = canvas.width / 2 - orangePlayer.width / 2;
 	orangePlayer.posY = 0 + orangePlayer.height * 2;
+	orangePlayer.direction = directionState.DOWN;
 	orangePlayer.speed = 1;
 	orangePlayer.barrier = true;
 };
@@ -61,8 +61,11 @@ const loadGame = () => {
 	prepareOrangePlayer();
 };
 
-const gameOver = () => {
-	// alert('Game Over!');
+const gameOver = player => {
+	const winner = player === bluePlayer ?
+		'Orange' :
+		'Blue';
+	alert(`Game Over.\n${winner} is winner!`);
 };
 
 const generateBarrierUnit = player => {
@@ -81,59 +84,34 @@ const generateBarrierUnit = player => {
 };
 
 const spawnBarrier = () => {
-  for (const barrierUnit of barrierList) {
+	for (const barrierUnit of barrierList) {
 		draw(barrierUnit)
 	};
 };
 
 const collisionRecognizer = player => {
-  const borderCollisionX = (player.posX <= 0 ||
-	  (player.posX + player.width) >= canvas.width);
+	const playerCollisionX = bluePlayer.posX === orangePlayer.posX;
+	const playerCollisionY = bluePlayer.posY === orangePlayer.posY;
+	const borderCollisionX = (player.posX <= 0 ||
+		(player.posX + player.width) >= canvas.width);
 	const borderCollisionY = (player.posY <= 0 ||
 		(player.posY + player.height) >= canvas.height);
 	const barrierCollision = (() => {
 		for (let i = 0; i < barrierList.length - 19; i++) {
 			const barrierUnit = barrierList[i];
-  	//for (const barrierUnit of barrierList) {
-			/*const innerBarrierCollisionX = (barrierUnit.posX >= player.posX) &&
-				barrierUnit.posX <= (player.posX + player.width);
-			const innerBarrierCollisionY = (barrierUnit.posY >= player.posY) &&
-				barrierUnit.posY <= (player.posY + player.height);
-			if (innerBarrierCollisionX || innerBarrierCollisionY) {
-				continue;
-			}*/
-		  /*const barrierCollisionX = ((player.posX + player.width / 2) >= barrierUnit.posX &&
-        (player.posX + player.width / 2) <= (barrierUnit.posX + barrierUnit.width));
-      const barrierCollisionY = ((player.posY + player.height / 2) >= barrierUnit.posY &&
-				(player.posY + player.height / 2) <= (barrierUnit.posY + barrierUnit.height));
-		  if (barrierCollisionX && barrierCollisionY) {
-				console.log(player);
-				console.log(barrierUnit);
-				alert();
-        return true; // true
-      }*/
-			/*const innerBarrierCollisionX =
-			const innerBarrierCollisionY =
-			if ((innerBarrierCollisionX || innerBarrierCollisionY) &&
-				player.destination === destinationState.) {
-				continue;
-			}*/
 			const barrierCollisionX = (player.posX > barrierUnit.posX &&
 				player.posX < (barrierUnit.posX + barrierUnit.width));
 			const barrierCollisionY = (player.posY > barrierUnit.posY &&
 				player.posY < (barrierUnit.posY + barrierUnit.height));
 			if (barrierCollisionX && barrierCollisionY) {
-				console.log(player);
-				console.log(barrierUnit);
-				alert();
-        return true;
+				return true;
 			};
 		}
 		return false;
 	})();
-	if (borderCollisionX || borderCollisionY ||
-		barrierCollision) {
-		gameOver();
+	if ((playerCollisionX && playerCollisionY) ||
+		borderCollisionX || borderCollisionY || barrierCollision) {
+		gameOver(player);
 		loadGame();
 	}
 };
@@ -149,33 +127,33 @@ const move = player => {
 		player.posY -= player.speed;
 	} else if (player.direction === directionState.DOWN) {
 		player.posY += player.speed;
-	}	
+	}
 	collisionRecognizer(player);
 };
 
 const changeDirection = (player, direction) => {
-  switch (direction) {
-    case directionState.LEFT:
-      if (player.direction !== directionState.RIGHT) {
-        player.direction = direction;
-      }
-      break;
-    case directionState.UP:
-      if (player.direction !== directionState.DOWN) {
-        player.direction = direction;
-      }
-      break;
-    case directionState.RIGHT:
-      if (player.direction !== directionState.LEFT) {
-        player.direction = direction;
-      }
-      break;
-    case directionState.DOWN:
-      if (player.direction !== directionState.UP) {
-        player.direction = direction;
-      }
-      break;
-  }
+	switch (direction) {
+		case directionState.LEFT:
+			if (player.direction !== directionState.RIGHT) {
+				player.direction = direction;
+			}
+			break;
+		case directionState.UP:
+			if (player.direction !== directionState.DOWN) {
+				player.direction = direction;
+			}
+			break;
+		case directionState.RIGHT:
+			if (player.direction !== directionState.LEFT) {
+				player.direction = direction;
+			}
+			break;
+		case directionState.DOWN:
+			if (player.direction !== directionState.UP) {
+				player.direction = direction;
+			}
+			break;
+	}
 };
 
 const switchSpeed = player => {
@@ -187,54 +165,54 @@ const switchBarrier = player => {
 };
 
 const keyEventListener = event => {
-  switch (event.keyCode) {
-    case 37: // left
-      changeDirection(bluePlayer, directionState.LEFT);
-      break;
-    case 38: // up
-      changeDirection(bluePlayer, directionState.UP);
-      break;
-    case 39: // right
-      changeDirection(bluePlayer, directionState.RIGHT);
-      break;
-    case 40: // down
-      changeDirection(bluePlayer, directionState.DOWN);
-      break;
+	switch (event.keyCode) {
+		case 37: // left
+			changeDirection(bluePlayer, directionState.LEFT);
+			break;
+		case 38: // up
+			changeDirection(bluePlayer, directionState.UP);
+			break;
+		case 39: // right
+			changeDirection(bluePlayer, directionState.RIGHT);
+			break;
+		case 40: // down
+			changeDirection(bluePlayer, directionState.DOWN);
+			break;
 		case 78: // n
-		  switchSpeed(bluePlayer);
+			switchSpeed(bluePlayer);
 			break;
 		case 77: // m
 			switchBarrier(bluePlayer);
 			break;
 		case 65: // a
-      changeDirection(orangePlayer, directionState.LEFT);
-      break;
-    case 87: // w
-      changeDirection(orangePlayer, directionState.UP);
-      break;
-    case 68: // d
-      changeDirection(orangePlayer, directionState.RIGHT);
-      break;
-    case 83: // s
-      changeDirection(orangePlayer, directionState.DOWN);
-      break;
+			changeDirection(orangePlayer, directionState.LEFT);
+			break;
+		case 87: // w
+			changeDirection(orangePlayer, directionState.UP);
+			break;
+		case 68: // d
+			changeDirection(orangePlayer, directionState.RIGHT);
+			break;
+		case 83: // s
+			changeDirection(orangePlayer, directionState.DOWN);
+			break;
 		case 88: // x
-		  switchSpeed(orangePlayer);
+			switchSpeed(orangePlayer);
 			break;
 		case 67: // c
 			switchBarrier(orangePlayer);
 			break;
-  }
+	}
 };
 
 const draw = object => {
-  context.fillStyle = object.color;
+	context.fillStyle = object.color;
 	context.fillRect(object.posX, object.posY, object.width, object.height);
 };
 
 const reloadFrame = () => {
-  clearField();
-  draw(bluePlayer);
+	clearField();
+	draw(bluePlayer);
 	draw(orangePlayer);
 	move(bluePlayer);
 	move(orangePlayer);
