@@ -20,3 +20,6 @@ The Breakout video-game
 
 ### tron-js
 The Tron lightbikes video-game (multiplayer)
+
+### invaders-js
+The Space Invaders video-game (without original models)
