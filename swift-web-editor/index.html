@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Swift Web Editor</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid app">
+        <nav class="navbar navbar-expand-lg navbar-black bg-black">
+            <div class="navbar-brand"><a href="#">Swift Editor</a></div>
+            <div class="col">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-right">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" @click="runScript()">
+                            <i class="fas fa-play"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" @click="downloadFile()">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/yehorbk" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#w" @click="showDonationAlert()">
+                            <i class="fas fa-donate"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#w" @click="showInfoAlert()">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-9 col-xs-12 editor-area">
+                <textarea @keyup.ctrl.117="runScript()" v-model="request.script"></textarea>
+            </div>
+            <div class="col-3 col-xs-12 compiler-area">
+                <textarea v-model="response.output" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/fontawesome.min.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
