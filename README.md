@@ -23,3 +23,6 @@ The Tron lightbikes video-game (multiplayer)
 
 ### invaders-js
 The Space Invaders video-game (without original models)
+
+### stand-sit-timer
+A special timer for people who work a lot at the computer and want to take care of their health
