@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Stand Sit Timer</title>
+	<link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+	<div class="container-fluid application">
+		<div class="row">
+			<div class="col-6 offset-3 align-self-center">
+				<div class="card">
+					<div class="card-header">
+						🖥 Stand Sit Timer for people who works a lot!
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col">
+								<form>
+									<div class="form-group">
+										<label for="sitting-time">Sitting Time</label>
+										<input id="sitting-time" type="number" class="form-control"
+											placeholder="Sitting Time (minutes)">
+									</div>
+									<div class="form-group">
+										<label for="warmup-time">Warm-up Time</label>
+										<input id="warmup-time" type="number" class="form-control"
+											placeholder="Warm-up Time (minutes)">
+									</div>
+									<div class="form-group">
+										<label for="standing-time">Standing Time</label>
+										<input id="standing-time" type="number" class="form-control"
+											placeholder="Standing Time (minutes)">
+									</div>
+								</form>
+							</div>
+							<div class="col text-center">
+								<p id="time-counter">00:00</p>
+								<p id="time-state" class="text-muted">Sitting</p>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer text-right">
+						<div class="text-left float-left" style="font-size: small;">
+							<span>
+								Designed and Developed by <a href="https://github.com/yehorbk">Yehor Bublyk</a>
+							</span>
+							<br>
+							<span class="text-muted">
+								Powered <a href="https://github.com/genericst">Generics</a>
+							</span>
+						</div>
+						<div class="text-right">
+							<button id="clear-timer" type="button" class="btn btn-secondary">Clear</button>
+							<button id="start-timer" type="button" class="btn btn-success">Start</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./assets/js/main.js"></script>
+</body>
+
+</html>

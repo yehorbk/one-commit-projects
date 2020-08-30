@@ -1,0 +1,12 @@
+.application {
+    margin-top: 100px;
+}
+
+#time-counter {
+    font-size: 75px;
+    margin-top: 30px;
+}
+
+#time-state {
+    font-size: 40px;
+}
