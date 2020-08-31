@@ -1,0 +1,24 @@
+textarea {
+    width: 100%;
+    height: 392px;
+    padding: 10px;
+    background: #181818;
+    border-color: #20262e;
+    border-width: 0.5px;
+    color: #F4FAFF;
+    resize: none;
+}
+
+#page-result {
+    width: 100%;
+    height: 392px;
+    overflow: scroll;
+}
+
+.navbar {
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    background: #101010;
+    overflow: hidden;
+}
