@@ -39,3 +39,7 @@ May be useful for web applications that run without their own server.
 
 ### web-online-editor
 Web Editor for HTML, CSS and JavaScript
+
+# Author
+
+**Yehor Bublyk**: [GitHub](https://github.com/yehorbk) • [Twitter](https://twitter.com/yehorbk)
