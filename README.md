@@ -40,6 +40,9 @@ May be useful for web applications that run without their own server.
 ### web-online-editor
 Web Editor for HTML, CSS and JavaScript
 
+### masm-manager
+Simple terminal utility to simplify the process of building masm programs
+
 # Author
 
 **Yehor Bublyk**: [GitHub](https://github.com/yehorbk) • [Twitter](https://twitter.com/yehorbk)
