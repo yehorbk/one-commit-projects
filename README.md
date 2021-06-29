@@ -43,6 +43,9 @@ Web Editor for HTML, CSS and JavaScript
 ### masm-manager
 Simple terminal utility to simplify the process of building masm programs
 
+### fps-comparator
+Simple application that visually compares different fps values
+
 # Author
 
 **Yehor Bublyk**: [GitHub](https://github.com/yehorbk) • [Twitter](https://twitter.com/yehorbk)
